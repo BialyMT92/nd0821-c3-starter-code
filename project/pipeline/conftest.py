@@ -7,7 +7,7 @@ from project.pipeline.ml.data import process_data, import_data
 @pytest.fixture(scope='session')
 def data():
     try:
-        data = import_data("../data/clean_census.csv")
+        data = import_data("project/data/clean_census.csv")
         return data
     except FileNotFoundError as err:
         pytest.fail("Testing import data: File wasn't found")
@@ -15,7 +15,7 @@ def data():
 @pytest.fixture(scope='session')
 def model():
     try:
-        model = joblib.load("../model/rfc_model.pkl")
+        model = joblib.load("project/model/rfc_model.pkl")
         return model
     except FileNotFoundError as err:
         pytest.fail("Testing import model: File wasn't found")
@@ -23,7 +23,7 @@ def model():
 @pytest.fixture(scope='session')
 def lb():
     try:
-        model = joblib.load("../model/lb.pkl")
+        model = joblib.load("project/model/lb.pkl")
         return model
     except FileNotFoundError as err:
         pytest.fail("Testing import lb: File wasn't found")
@@ -31,7 +31,7 @@ def lb():
 @pytest.fixture(scope='session')
 def encoder():
     try:
-        model = joblib.load("../model/encoder.pkl")
+        model = joblib.load("project/model/encoder.pkl")
         return model
     except FileNotFoundError as err:
         pytest.fail("Testing import encoder: File wasn't found")
