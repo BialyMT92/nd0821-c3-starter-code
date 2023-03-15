@@ -22,6 +22,7 @@ jobs:
           pip install joblib
           pip install scikit-learn
           pip install numpy
+          pip install pandas
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
