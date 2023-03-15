@@ -23,9 +23,7 @@ def train_model(X_train, y_train):
     rfc = RandomForestClassifier(random_state=42)
 
     param_grid = {
-        'n_estimators': [200, 500],
-        'max_features': ['auto', 'sqrt'],
-        'max_depth': [4, 5, 100],
+        'n_estimators': [100],
         'criterion': ['gini', 'entropy']
     }
 
