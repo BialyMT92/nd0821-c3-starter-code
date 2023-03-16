@@ -23,6 +23,7 @@ jobs:
           pip install scikit-learn
           pip install numpy
           pip install pandas
+          pip install httpx
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
