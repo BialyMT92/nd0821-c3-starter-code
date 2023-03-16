@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -15,7 +16,6 @@ from pipeline.ml.model import compute_model_metrics, inference
 class TaggedItem(BaseModel):
     age: int = 37
     workclass: str = 'Private'
-'''
     fnlgt: int = 284582
     education: str = 'Masters'
     education_num: int = 14
@@ -28,9 +28,6 @@ class TaggedItem(BaseModel):
     capital_loss: int = 0
     hours_per_week: int = 40
     native_country: str = 'United-States'
-'''
-
-
 
 '''
 data = TaggedItem().dict()
@@ -48,10 +45,9 @@ async def frontend():
     return {"Welcome to Udacity CI/CD ML Deployment"}
 
 
-@app.post("/predicta")
+@app.post("/predict")
 async def predict(item: TaggedItem):
-    return item
-'''    
+
     model = joblib.load("model/rfc_model.pkl")
     lb = joblib.load("model/lb.pkl")
     encoder = joblib.load("model/encoder.pkl")
@@ -72,12 +68,16 @@ async def predict(item: TaggedItem):
     df = pd.DataFrame([data])
     df.columns = df.columns.str.replace("_", "-")
 
-
     X_test, y_test, _, _ = process_data(df, categorical_features=cat_features,
                                         training=False,
                                         encoder=encoder, lb=lb)
 
-    preds = inference(model, X_test)
+    pred_array = inference(model, X_test)
 
-    return {"success"}
-'''
+    pred_value = np.argmax(pred_array)
+
+    if pred_value == 1:
+        salary = '>50k$'
+    else:
+        salary = '<= 50k$'
+    return {"Salary prediction is": salary}
