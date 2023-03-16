@@ -1,9 +1,0 @@
-python==3.8c
-numpy
-pandas
-scikit-learn
-pytest
-requests
-fastapi==0.94.0
-uvicorn
-gunicorn
