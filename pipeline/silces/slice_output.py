@@ -2,7 +2,7 @@ import pandas as pd
 import joblib
 from pipeline.ml.data import process_data
 from pipeline.ml.model import compute_model_metrics, inference
-
+import numpy as np
 
 df = pd.read_csv("../../data/clean_census.csv")
 model = joblib.load("../../model/rfc_model.pkl")

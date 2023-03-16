@@ -2,6 +2,7 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 import joblib
+from sklearn.linear_model import LogisticRegression
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -31,8 +32,22 @@ def train_model(X_train, y_train):
     cv_rfc.fit(X_train, y_train)
 
     joblib.dump(cv_rfc.best_estimator_, r"../model/rfc_model.pkl")
-
+    
     return cv_rfc
+
+'''
+    lr = LogisticRegression(solver='liblinear', random_state=0)
+    param_grid = {
+        "C": [0.001, 0.01, 0.1, 1, 10, 100, 1000],
+        "penalty": ["l1", "l2"]
+    }
+
+    CV_cls = GridSearchCV(estimator=lr, param_grid=param_grid, cv=5)
+    CV_cls.fit(X_train, y_train)
+    joblib.dump(CV_cls.best_estimator_, r"../model/rfc_model.pkl")
+    return CV_cls.best_estimator_
+'''
+
 
 def compute_model_metrics(y, preds):
     """
