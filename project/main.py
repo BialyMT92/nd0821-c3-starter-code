@@ -48,7 +48,7 @@ async def frontend():
     return {"Welcome to Udacity CI/CD ML Deployment"}
 
 
-@app.post("/predict")
+@app.post("/predicta")
 async def predict(item: TaggedItem):
     return item
 '''    
