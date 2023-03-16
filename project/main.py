@@ -29,6 +29,7 @@ class TaggedItem(BaseModel):
     hours_per_week: int = 40
     native_country: str = 'United-States'
 
+
 '''
 data = TaggedItem().dict()
 
@@ -47,7 +48,6 @@ async def frontend():
 
 @app.post("/predict")
 async def predict(item: TaggedItem):
-
     model = joblib.load("model/rfc_model.pkl")
     lb = joblib.load("model/lb.pkl")
     encoder = joblib.load("model/encoder.pkl")
@@ -62,7 +62,7 @@ async def predict(item: TaggedItem):
         "sex",
         "native-country",
     ]
-    
+
     data = item.dict()
 
     df = pd.DataFrame([data])
